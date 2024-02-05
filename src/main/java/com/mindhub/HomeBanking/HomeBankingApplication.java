@@ -25,7 +25,8 @@ public class HomeBankingApplication {
 			Client melba = new Client("Melba", "Morel", "melba@mindhub.com");
 			Account account1 = new Account(5000.0, LocalDate.now(), "VIN001");
 			Account account2 = new Account(7500.0, LocalDate.now().plusDays(1), "VIN002");
-
+            Client ana = new Client("Ana", "Gonzalez", "anagonzalez@gmail.com");
+			Client luz = new Client("Luz", "Mieres", "luzmieres@gmail.com");
 			// Asociar cuentas al cliente
 			melba.addAccount(account1);
 			melba.addAccount(account2);
@@ -34,7 +35,11 @@ public class HomeBankingApplication {
 			clientRepository.save(melba);
 			accountRepository.save(account1);
 			accountRepository.save(account2);
+			clientRepository.save(ana);
+			clientRepository.save(luz);
 			System.out.println(melba);
+			System.out.println(ana);
+			System.out.println(luz);
 		};
 	}
 }
