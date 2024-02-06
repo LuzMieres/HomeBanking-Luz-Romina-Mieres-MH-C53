@@ -1,8 +1,7 @@
 package com.mindhub.HomeBanking.controllers;
 
-
-import com.mindhub.HomeBanking.client.Client;
-import com.mindhub.HomeBanking.dtos.ClientDTO;
+import com.mindhub.HomeBanking.DTO.ClientDTO;
+import com.mindhub.HomeBanking.models.Client;
 import com.mindhub.HomeBanking.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +19,12 @@ import java.util.stream.Collectors;
 public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
+
+    /*
+    @GetMapping("/")
+    public List<Client> getAllClients(){
+        return clientRepository.findAll();
+    }*/
 
     @GetMapping("/")
     public ResponseEntity<List<ClientDTO>> obtainClients(){
@@ -29,12 +35,19 @@ public class ClientController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> obtainClientById(@PathVariable Long id){
-        Client client = clientRepository.findById(id).orElse(null);
+        Client cliente = clientRepository.findById(id).orElse(null);
 
-        if (client == null){
+        if (cliente == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client not found, sorry, try again later!");
         }
-        ClientDTO clientDTO = new ClientDTO(client);
+        ClientDTO clientDTO = new ClientDTO(cliente);
         return new ResponseEntity<>(clientDTO, HttpStatus.OK);
     }
+    @GetMapping("/hello")
+    public String getClients(){
+        return "Hello Clients!";
+    }
+
+
+
 }
