@@ -12,6 +12,7 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(name="account_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)

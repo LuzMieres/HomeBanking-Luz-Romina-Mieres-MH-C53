@@ -1,14 +1,14 @@
 package com.mindhub.HomeBanking.DTO;
 
 import com.mindhub.HomeBanking.models.Transaction;
-import com.mindhub.homebanking.models.TransactionType;
+import com.mindhub.HomeBanking.models.TransactionType;
 
 public class TransactionDTO {
     private Long id;
     private String  description;
     private double amount;
 
-    private com.mindhub.homebanking.models.TransactionType type;
+    private TransactionType type;
 
     public TransactionDTO(Transaction transaction){
         this.id = transaction.getId();

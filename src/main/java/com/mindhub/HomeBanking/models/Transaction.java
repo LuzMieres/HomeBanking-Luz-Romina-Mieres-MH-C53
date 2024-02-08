@@ -1,6 +1,5 @@
 package com.mindhub.HomeBanking.models;
 
-import com.mindhub.homebanking.models.TransactionType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -10,10 +9,11 @@ public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(name="account_id")
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private com.mindhub.homebanking.models.TransactionType type;
+    private TransactionType type;
 
     private double amount;
 

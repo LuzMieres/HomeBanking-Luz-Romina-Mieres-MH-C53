@@ -10,7 +10,8 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    @JoinColumn(name="client_id")
+    private Long id;
 
     private String name, lastName, email;
 
@@ -72,4 +73,17 @@ public class Client {
                 ", accounts=" + accounts +
                 '}';
     }
+
+    public Set<ClientLoan> getClientLoans() {
+        return getClientLoans();
+    }
+
+    public Set<Loan> getLoans() {
+        Set<Loan> loans = new HashSet<>();
+        for (ClientLoan clientLoan : getClientLoans()) {
+            loans.add(clientLoan.getLoan());
+        }
+        return loans;
+    }
+
 }

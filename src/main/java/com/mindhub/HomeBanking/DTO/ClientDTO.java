@@ -12,6 +12,8 @@ public class ClientDTO {
 
     private Set<AccountDTO> accounts;
 
+    private Set<ClientLoanDTO> loans; // Nueva propiedadv
+
     public ClientDTO(){
 
     }
@@ -22,6 +24,7 @@ public class ClientDTO {
         this.lastName =  cliente.getLastName();
         this.email = cliente.getEmail();
         this.accounts = cliente.getAccounts().stream().map(AccountDTO::new).collect(Collectors.toSet());
+        this.loans = cliente.getClientLoans().stream().map(ClientLoanDTO::new).collect(Collectors.toSet());
     }
 
     public String getLastName() {
@@ -42,5 +45,9 @@ public class ClientDTO {
 
     public String getEmail() {
         return email;
+    }
+
+    public Set<ClientLoanDTO> getLoans() {
+        return loans;
     }
 }
