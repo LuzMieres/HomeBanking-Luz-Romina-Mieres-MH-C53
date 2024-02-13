@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Transaction {
+public class TransactionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JoinColumn(name="account_id")
+    @JoinColumn(name="accountEntity_id")
     private Long id;
 
     @Enumerated(EnumType.STRING)
@@ -23,11 +23,11 @@ public class Transaction {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "account_id")
-    private Account account;
+    @JoinColumn(name = "accountEntity_id")
+    private AccountEntity account;
 
 
-    public Transaction(){
+    public TransactionEntity(){
 
     }
 
@@ -39,7 +39,7 @@ public class Transaction {
         this.type = type;
     }
 
-    public Transaction(double amount, String description, LocalDate date, TransactionType type) {
+    public TransactionEntity(double amount, String description, LocalDate date, TransactionType type) {
         this.amount = amount;
         this.description = description;
         this.date = date;
@@ -74,11 +74,11 @@ public class Transaction {
         this.date = date;
     }
 
-    public Account getAccount() {
+    public AccountEntity getAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
+    public void setAccount(AccountEntity account) {
         this.account = account;
     }
 

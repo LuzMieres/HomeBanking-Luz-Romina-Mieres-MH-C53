@@ -1,6 +1,6 @@
 package com.mindhub.HomeBanking.DTO;
 
-import com.mindhub.HomeBanking.models.Account;
+import com.mindhub.HomeBanking.models.AccountEntity;
 
 import java.time.LocalDate;
 
@@ -18,7 +18,7 @@ public class AccountDTO {
 
     }
 
-    public AccountDTO(Account account){
+    public AccountDTO(AccountEntity account){
         this.id = account.getId();
         this.balance = account.getBalance();
         this.number = account.getNumber();

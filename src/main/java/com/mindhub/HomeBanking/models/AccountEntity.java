@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Account {
+public class AccountEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class Account {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
-    private Client cliente;
+    private ClientEntity client;
     private String number;
 
     private double balance;
@@ -25,24 +25,24 @@ public class Account {
     private LocalDate creationDate;
 
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-    Set<Transaction> transaction = new HashSet<>();
+    Set<TransactionEntity> transaction = new HashSet<>();
 
-    public Account(){
+    public AccountEntity(){
 
     }
 
-    public Account(String number, double balance, LocalDate creationDate) {
+    public AccountEntity(String number, double balance, LocalDate creationDate) {
         this.number = number;
         this.balance = balance;
         this.creationDate = creationDate;
     }
 
-    public void setCliente(Client cliente) {
-        this.cliente = cliente;
+    public void setClient(ClientEntity client) {
+        this.client = client;
     }
 
-    public Client getCliente() {
-        return cliente;
+    public ClientEntity getClient() {
+        return client;
     }
 
     public Long getId() {
@@ -61,11 +61,11 @@ public class Account {
         return creationDate;
     }
 
-    public Set<Transaction> getTransactions() {
+    public Set<TransactionEntity> getTransactions() {
         return transaction;
     }
 
-    public void addTransaction(Transaction transaction){
+    public void addTransaction(TransactionEntity transaction){
         transaction.setAccount(this);
         this.transaction.add(transaction);
     }

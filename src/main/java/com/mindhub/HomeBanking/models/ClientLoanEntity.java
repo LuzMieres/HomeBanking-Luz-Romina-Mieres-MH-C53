@@ -2,30 +2,27 @@ package com.mindhub.HomeBanking.models;
 import jakarta.persistence.*;
 
 @Entity
-public class ClientLoan {
+public class ClientLoanEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    private ClientEntity client;
 
     @ManyToOne
-    @JoinColumn(name = "loan_id")
-    private Loan loan;
+    private LoanEntity loan;
 
     private double amount;
 
     @ManyToOne
-    @JoinColumn(name = "payments_id")
-    private Payments payments;
+    private PaymentsEntity payments;
 
-    public ClientLoan() {
+    public ClientLoanEntity() {
     }
 
-    public ClientLoan(Client client, Loan loan, double amount) {
+    public ClientLoanEntity(ClientEntity client, LoanEntity loan, double amount) {
         this.client = client;
         this.loan = loan;
         this.amount = amount;
@@ -35,19 +32,19 @@ public class ClientLoan {
         return id;
     }
 
-    public Client getClient() {
+    public ClientEntity getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(ClientEntity client) {
         this.client = client;
     }
 
-    public Loan getLoan() {
+    public LoanEntity getLoan() {
         return loan;
     }
 
-    public void setLoan(Loan loan) {
+    public void setLoan(LoanEntity loan) {
         this.loan = loan;
     }
 
@@ -59,11 +56,11 @@ public class ClientLoan {
         this.amount = amount;
     }
 
-    public Payments getPayments() {
+    public PaymentsEntity getPayments() {
         return payments;
     }
 
-    public int setPayments(Payments payments) {
+    public int setPayments(PaymentsEntity payments) {
         this.payments = payments;
         return setPayments(payments);
     }
@@ -75,9 +72,9 @@ public class ClientLoan {
                 ", client=" + client +
                 ", loan=" + loan +
                 ", amount=" + amount +
+                ", payments=" + payments +
                 '}';
     }
-
 
     public void setPayments(int i) {
     }

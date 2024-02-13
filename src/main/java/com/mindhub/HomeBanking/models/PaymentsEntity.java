@@ -7,7 +7,7 @@ import java.util.List;
 
 
 @Entity
-public class Payments {
+public class PaymentsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,10 +16,10 @@ public class Payments {
     @ElementCollection
     private List<Integer> payments;
 
-    public Payments() {
+    public PaymentsEntity() {
     }
 
-    public Payments(List<Integer> payments) {
+    public PaymentsEntity(List<Integer> payments) {
         this.payments = payments;
     }
 

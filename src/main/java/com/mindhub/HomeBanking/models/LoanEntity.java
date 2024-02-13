@@ -5,11 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Loan {
+public class LoanEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JoinColumn(name="loan_id")
+    @JoinColumn(name="loanEntity_id")
     private Long id;
 
     private String name;
@@ -19,12 +19,12 @@ public class Loan {
     private Set<Integer> dues = new HashSet<>();
 
     @ManyToMany
-    private Set<ClientLoan> clients = new HashSet<>();
+    private Set<ClientLoanEntity> clients = new HashSet<>();
 
-    public Loan() {
+    public LoanEntity() {
     }
 
-    public Loan(String name, double maxAmount, Set<Integer> dues) {
+    public LoanEntity(String name, double maxAmount, Set<Integer> dues) {
         this.name = name;
         this.maxAmount = maxAmount;
         this.dues = dues;
@@ -32,14 +32,14 @@ public class Loan {
 
 
 
-    public Set<ClientLoan> getClients() {
+    public Set<ClientLoanEntity> getClients() {
         return clients;
     }
 
     // Método para obtener la lista de clientes para un préstamo
-    public Set<Client> getClientList() {
-        Set<Client> clientList = new HashSet<>();
-        for (ClientLoan clientLoan : clients) {
+    public Set<ClientEntity> getClientList() {
+        Set<ClientEntity> clientList = new HashSet<>();
+        for (ClientLoanEntity clientLoan : clients) {
             clientList.add(clientLoan.getClient());
         }
         return clientList;
@@ -73,7 +73,7 @@ public class Loan {
         this.dues = dues;
     }
 
-    public void setClients(Set<ClientLoan> clients) {
+    public void setClients(Set<ClientLoanEntity> clients) {
         this.clients = clients;
     }
 

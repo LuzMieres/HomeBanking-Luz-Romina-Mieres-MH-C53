@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Client {
+public class ClientEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,13 +15,16 @@ public class Client {
 
     private String name, lastName, email;
 
-    @OneToMany(mappedBy="cliente", fetch = FetchType.EAGER)
-    Set<Account> accounts = new HashSet<>();
-    public Client(){
+    @OneToMany(mappedBy="client", fetch = FetchType.EAGER)
+    Set<AccountEntity> accounts = new HashSet<>();
+
+    @OneToMany(mappedBy = "client")
+    private Set<CardEntity> cards = new HashSet<>();
+    public ClientEntity(){
 
     }
 
-    public Client(String name, String lastName, String email) {
+    public ClientEntity(String name, String lastName, String email) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -54,12 +57,20 @@ public class Client {
         this.email = email;
     }
 
-    public Set<Account> getAccounts() {
+    public Set<AccountEntity> getAccounts() {
         return accounts;
     }
 
-    public void addAccount(Account account){
-        account.setCliente(this);
+    public Set<CardEntity> getCards() {
+        return cards;
+    }
+
+    public void setCards(Set<CardEntity> cards) {
+        this.cards = cards;
+    }
+
+    public void addAccount(AccountEntity account){
+        account.setClient(this);
         accounts.add(account);
     }
 
@@ -74,16 +85,22 @@ public class Client {
                 '}';
     }
 
-    public Set<ClientLoan> getClientLoans() {
-        return getClientLoans();
+    public Set<ClientLoanEntity> getClientLoans() {
+        Set<ClientLoanEntity> clientLoans = new HashSet<>();
+        return clientLoans;
     }
 
-    public Set<Loan> getLoans() {
-        Set<Loan> loans = new HashSet<>();
-        for (ClientLoan clientLoan : getClientLoans()) {
+    public Set<LoanEntity> getLoans() {
+        Set<LoanEntity> loans = new HashSet<>();
+        for (ClientLoanEntity clientLoan : getClientLoans()) {
             loans.add(clientLoan.getLoan());
         }
         return loans;
+    }
+
+    public void addCard(CardEntity card) {
+        cards.add(card);
+        card.setClient(this);
     }
 
 }
