@@ -8,16 +8,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class AccountEntity {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JoinColumn(name="account_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
-    private ClientEntity client;
+    private Client client;
     private String number;
 
     private double balance;
@@ -25,24 +24,24 @@ public class AccountEntity {
     private LocalDate creationDate;
 
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-    Set<TransactionEntity> transaction = new HashSet<>();
+    Set<Transaction> transaction = new HashSet<>();
 
-    public AccountEntity(){
+    public Account(){
 
     }
 
-    public AccountEntity(String number, double balance, LocalDate creationDate) {
+    public Account(String number, double balance, LocalDate creationDate) {
         this.number = number;
         this.balance = balance;
         this.creationDate = creationDate;
     }
 
-    public void setClient(ClientEntity client) {
-        this.client = client;
+    public Client getClient() {
+        return client;
     }
 
-    public ClientEntity getClient() {
-        return client;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Long getId() {
@@ -61,11 +60,11 @@ public class AccountEntity {
         return creationDate;
     }
 
-    public Set<TransactionEntity> getTransactions() {
+    public Set<Transaction> getTransactions() {
         return transaction;
     }
 
-    public void addTransaction(TransactionEntity transaction){
+    public void addTransaction(Transaction transaction){
         transaction.setAccount(this);
         this.transaction.add(transaction);
     }

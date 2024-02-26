@@ -1,40 +1,53 @@
 package com.mindhub.HomeBanking.DTO;
 
-import com.mindhub.HomeBanking.models.ClientLoanEntity;
-import com.mindhub.HomeBanking.models.PaymentsEntity;
+import com.mindhub.HomeBanking.models.ClientLoan;
 
 public class ClientLoanDTO {
-    private Long id;
-    private Long loanId;
-    private String loanName;
-    private double amountRequested;
-    private PaymentsEntity payments;
 
-    public ClientLoanDTO(ClientLoanEntity clientLoan) {
+    private Long id;
+    private Double amount;
+    private Integer payments;
+    private String name;
+    private Long loanId;
+
+
+    public ClientLoanDTO(ClientLoan clientLoan) {
         this.id = clientLoan.getId();
-        this.loanId = clientLoan.getLoan().getId();
-        this.loanName = clientLoan.getLoan().getName();
-        this.amountRequested = clientLoan.getAmount();
+        this.amount = clientLoan.getAmount();
         this.payments = clientLoan.getPayments();
+        this.name = clientLoan.getLoan().getName();
+        this.loanId = clientLoan.getLoan().getId();
     }
 
     public Long getId() {
         return id;
     }
 
+    public Double getAmount() {
+        return amount;
+    }
+
+    public Integer getPayments() {
+        return payments;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public Long getLoanId() {
         return loanId;
     }
 
-    public String getLoanName() {
-        return loanName;
-    }
 
-    public double getAmountRequested() {
-        return amountRequested;
-    }
-
-    public PaymentsEntity getPayments() {
-        return payments;
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", payments=" + payments +
+                ", name='" + name + '\'' +
+                ", loanId=" + loanId +
+                '}';
     }
 }

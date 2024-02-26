@@ -1,6 +1,8 @@
 package com.mindhub.HomeBanking.DTO;
 
-import com.mindhub.HomeBanking.models.ClientEntity;
+import com.mindhub.HomeBanking.models.Client;
+
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,22 +13,22 @@ public class ClientDTO {
 
     private Set<AccountDTO> accounts;
 
-    private Set<ClientLoanDTO> loans;
+    private List<ClientLoanDTO> loans;
 
-    private Set<CardDTO> cards;
+    private List<CardDTO> cards;
 
     public ClientDTO(){
 
     }
 
-    public ClientDTO(ClientEntity client) {
-        this.id = client.getId();
-        this.name = client.getName();
-        this.lastName = client.getLastName();
-        this.email = client.getEmail();
-        this.accounts = client.getAccounts().stream().map(AccountDTO::new).collect(Collectors.toSet());
-        this.loans = client.getClientLoans().stream().map(ClientLoanDTO::new).collect(Collectors.toSet());
-        this.cards = client.getCards().stream().map(CardDTO::new).collect(Collectors.toSet());
+    public ClientDTO(Client cliente){
+        this.id = cliente.getId();
+        this.name = cliente.getName();
+        this.lastName =  cliente.getLastName();
+        this.email = cliente.getEmail();
+        this.accounts = cliente.getAccounts().stream().map(AccountDTO::new).collect(Collectors.toSet());
+        this.loans = cliente.getClientLoans().stream().map(ClientLoanDTO::new).collect(Collectors.toList());
+        this.cards = cliente.getCard().stream().map(CardDTO::new).collect(Collectors.toList());
     }
 
     public String getLastName() {
@@ -49,26 +51,19 @@ public class ClientDTO {
         return email;
     }
 
-    public Set<ClientLoanDTO> getLoans() { return loans; }
-
-    public Set<CardDTO> getCards() {
-        return cards;
+    public List<ClientLoanDTO> getLoans() {
+        return loans;
     }
 
-    public void setCards(Set<CardDTO> cards) {
+    public void setCards(List<CardDTO> cards) {
         this.cards = cards;
     }
 
-    @Override
-    public String toString() {
-        return "ClientDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", accounts=" + accounts +
-                ", loans=" + loans +
-                ", cards=" + cards +
-                '}';
+    public void setLoans(List<ClientLoanDTO> loans) {
+        this.loans = loans;
+    }
+
+    public List<CardDTO> getCards() {
+        return cards;
     }
 }

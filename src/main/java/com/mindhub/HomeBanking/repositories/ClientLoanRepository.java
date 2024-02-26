@@ -1,7 +1,9 @@
 package com.mindhub.HomeBanking.repositories;
 
-import com.mindhub.HomeBanking.models.ClientLoanEntity;
+import com.mindhub.HomeBanking.models.ClientLoan;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ClientLoanRepository extends JpaRepository <ClientLoanEntity, Long> {
+@Repository
+public interface ClientLoanRepository extends JpaRepository<ClientLoan, Long> {
 }

@@ -1,6 +1,6 @@
 package com.mindhub.HomeBanking.DTO;
 
-import com.mindhub.HomeBanking.models.TransactionEntity;
+import com.mindhub.HomeBanking.models.Transaction;
 import com.mindhub.HomeBanking.models.TransactionType;
 
 public class TransactionDTO {
@@ -10,7 +10,7 @@ public class TransactionDTO {
 
     private TransactionType type;
 
-    public TransactionDTO(TransactionEntity transaction){
+    public TransactionDTO(Transaction transaction){
         this.id = transaction.getId();
         this.amount = transaction.getAmount();
         this.type = transaction.getType();
