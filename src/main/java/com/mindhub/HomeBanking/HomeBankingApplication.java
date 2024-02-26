@@ -33,21 +33,19 @@ public class HomeBankingApplication {
 			Client luz = new Client("Luz", "Mieres", "luzmieres@gmail.com");
 			System.out.println(melba);
 
-
-			Account vin002 = new Account("VIN002",5000, LocalDate.now());
 			Account vin001 = new Account("VIN001",7500, LocalDate.now().plusDays(1));
+			Account vin002 = new Account("VIN002",5000, LocalDate.now());
 
 			Transaction transfereniaRecibida = new Transaction(3000, "CR CREDIT INTERBANK",LocalDate.now(),TransactionType.CREDIT);
 			Transaction pagoServicioLuz = new Transaction(-2500, "PAGO SERVICIO LUZ",LocalDate.now().plusDays(1),TransactionType.DEBIT);
 
-			melba.addAccount(vin002);
 			melba.addAccount(vin001);
+			melba.addAccount(vin002);
 
 			luz.addAccount(vin002);
 
-			vin002.addTransaction(transfereniaRecibida);
 			vin001.addTransaction(pagoServicioLuz);
-
+			vin002.addTransaction(transfereniaRecibida);
 
 			Loan hipoteca = new Loan("Hipoteca", 500000, Set.of(12,24,36,48,60));
 			Loan personal = new Loan("Personal",100000, Set.of(6,12,24));

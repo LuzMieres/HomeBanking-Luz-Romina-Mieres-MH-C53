@@ -4,6 +4,7 @@ import com.mindhub.HomeBanking.models.Account;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AccountDTO {
 
@@ -26,7 +27,7 @@ public class AccountDTO {
         this.balance = account.getBalance();
         this.number = account.getNumber();
         this.creationDate = account.getCreationDate();
-        this.transactions = account.getTransactions().stream().map(TransactionDTO::new).toList();
+        this.transactions = account.getTransactions().stream().map(TransactionDTO::new).collect(Collectors.toList());
     }
 
     public String getNumber() {

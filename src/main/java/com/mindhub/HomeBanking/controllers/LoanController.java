@@ -1,4 +1,4 @@
-package com.mindhub.HomeBanking.controllers;
+package com.mindhub.homebanking.controllers;
 
 import com.mindhub.HomeBanking.DTO.LoanDTO;
 import com.mindhub.HomeBanking.repositories.LoanRepository;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/loan")
+@CrossOrigin(origins = "http://localhost:5173")
 public class LoanController {
 
     @Autowired

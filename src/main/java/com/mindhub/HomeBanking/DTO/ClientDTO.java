@@ -5,7 +5,6 @@ import com.mindhub.HomeBanking.models.Client;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 public class ClientDTO {
 
     private Long id;
@@ -26,7 +25,7 @@ public class ClientDTO {
         this.name = cliente.getName();
         this.lastName =  cliente.getLastName();
         this.email = cliente.getEmail();
-        this.accounts = cliente.getAccounts().stream().map(AccountDTO::new).collect(Collectors.toSet());
+        this.accounts = cliente.getAccounts().stream().map(com.mindhub.HomeBanking.DTO.AccountDTO::new).collect(Collectors.toSet());
         this.loans = cliente.getClientLoans().stream().map(ClientLoanDTO::new).collect(Collectors.toList());
         this.cards = cliente.getCard().stream().map(CardDTO::new).collect(Collectors.toList());
     }

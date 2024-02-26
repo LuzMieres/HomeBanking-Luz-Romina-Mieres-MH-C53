@@ -1,4 +1,4 @@
-package com.mindhub.HomeBanking.controllers;
+package com.mindhub.homebanking.controllers;
 
 import com.mindhub.HomeBanking.DTO.CardDTO;
 import com.mindhub.HomeBanking.DTO.ClientDTO;
@@ -14,11 +14,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/clients")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
+
+    /*
+    @GetMapping("/")
+    public List<Client> getAllClients(){
+        return clientRepository.findAll();
+    }*/
 
     @GetMapping("/")
     public ResponseEntity<List<ClientDTO>> obtainClients(){
@@ -29,17 +35,17 @@ public class ClientController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> obtainClientById(@PathVariable Long id){
-        Client client = clientRepository.findById(id).orElse(null);
+        Client cliente = clientRepository.findById(id).orElse(null);
 
-        if (client == null){
+        if (cliente == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client not found, sorry, try again later!");
         }
-        ClientDTO clientDTO = new ClientDTO(client);
-        List<ClientLoanDTO> clientLoanDTOs = client.getClientLoans().stream()
+        ClientDTO clientDTO = new ClientDTO(cliente);
+        List<ClientLoanDTO> clientLoanDTOs = cliente.getClientLoans().stream()
                 .map(ClientLoanDTO::new)
                 .collect(Collectors.toList());
         clientDTO.setLoans(clientLoanDTOs);
-        List<CardDTO> cardDTOs = client.getCard().stream()
+        List<CardDTO> cardDTOs = cliente.getCard().stream()
                 .map(CardDTO::new)
                 .collect(Collectors.toList());
         clientDTO.setCards(cardDTOs);
@@ -49,4 +55,7 @@ public class ClientController {
     public String getClients(){
         return "Hello Clients!";
     }
+
+
+
 }
