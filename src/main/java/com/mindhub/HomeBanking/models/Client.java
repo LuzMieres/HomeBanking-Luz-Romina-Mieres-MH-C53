@@ -26,7 +26,8 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<Card> cards = new ArrayList<>();
 
-
+    @Column(name = "password")
+    private String password;
 
     public Client(){
 
@@ -69,11 +70,6 @@ public class Client {
         return accounts;
     }
 
-    public void addAccount(Account account){
-        account.setClient(this);
-        accounts.add(account);
-    }
-
     public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
     }
@@ -84,11 +80,6 @@ public class Client {
 
     public void setClientLoans(Set<ClientLoan> clientLoans) {
         this.clientLoans = clientLoans;
-    }
-
-    public void addClientLoans(ClientLoan clientLoan){
-        clientLoan.setClient(this);
-        clientLoans.add(clientLoan);
     }
 
     public List<ClientLoanDTO> getLoans(){
@@ -103,11 +94,28 @@ public class Client {
         this.cards = card;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void addAccount(Account account){
+        account.setClient(this);
+        accounts.add(account);
+    }
+
     public void addCard(Card card){
         card.setClient(this);
         cards.add(card);
     }
 
+    public void addClientLoans(ClientLoan clientLoan){
+        clientLoan.setClient(this);
+        clientLoans.add(clientLoan);
+    }
     @Override
     public String toString() {
         return "Client{" +

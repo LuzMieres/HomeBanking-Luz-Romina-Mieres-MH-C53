@@ -1,4 +1,4 @@
-package com.mindhub.homebanking.controllers;
+package com.mindhub.HomeBanking.controllers;
 
 import com.mindhub.HomeBanking.DTO.LoanDTO;
 import com.mindhub.HomeBanking.repositories.LoanRepository;

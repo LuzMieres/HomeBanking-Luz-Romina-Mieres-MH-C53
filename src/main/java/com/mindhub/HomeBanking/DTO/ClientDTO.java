@@ -16,6 +16,8 @@ public class ClientDTO {
 
     private List<CardDTO> cards;
 
+    private String password;
+
     public ClientDTO(){
 
     }
@@ -64,5 +66,13 @@ public class ClientDTO {
 
     public List<CardDTO> getCards() {
         return cards;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
